@@ -68,12 +68,20 @@ class InputFieldWidget extends StatelessWidget {
     final textField = TextField(controller: controller, decoration: noUnderline,);
 
     return Expanded(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(child: Center(child: Text(label))),
-          Expanded(child: textField)
-        ],
+      child: Container(
+        margin: EdgeInsets.all(2.0),
+        decoration: BoxDecoration(
+          color: Color(0xffffddaa),
+          borderRadius: BorderRadius.circular(10),
+          
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(child: Center(child: Text(label))),
+            Expanded(child: textField)
+          ],
+        ),
       ),
     );
   }
