@@ -52,10 +52,42 @@ class _InputSectionState extends State<InputSection> {
         InputFieldWidget(label: 'URL', controller: urlController),
         InputFieldWidget(label: 'Country', controller: countryController),
         InputFieldWidget(label: 'Title', controller: titleController),
+        SaveButton(
+            company: companyController.text,
+            url: urlController.text,
+            country: countryController.text,
+            title: titleController.text,
+        ),
       ],
     );
   }
 }
+
+class SaveButton extends StatelessWidget {
+  final String company;
+  final String url;
+  final String country;
+  final String title;
+
+  const SaveButton({
+    Key? key,
+    required this.title,
+    required this.company,
+    required this.country,
+    required this.url,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+
+      },
+      child: Text('Save'),
+    );
+  }
+}
+
 
 class InputFieldWidget extends StatelessWidget {
   InputFieldWidget({required this.label, required this.controller});
