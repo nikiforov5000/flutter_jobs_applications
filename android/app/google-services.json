@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "71870073358",
+    "project_id": "flutter-jobs-applications",
+    "storage_bucket": "flutter-jobs-applications.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71870073358:android:fe3d4c88e93ea6e6d04a5f",
+        "android_client_info": {
+          "package_name": "com.example.flutter_jobs_applications"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71870073358-dnna9prucbugf75q1i2s5fclor5frmrt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_jobs_applications",
+            "certificate_hash": "24af9d8ab98540ae1c7b92413dff97a0d4bbeab8"
+          }
+        },
+        {
+          "client_id": "71870073358-kjv5rjae29nt6mh6ntf83t4019u6an8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA97zDGeJmbUWcYm6jNS86FCpqRHwKaTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71870073358-kjv5rjae29nt6mh6ntf83t4019u6an8b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
