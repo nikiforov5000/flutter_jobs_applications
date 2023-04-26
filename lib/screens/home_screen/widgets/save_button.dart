@@ -9,8 +9,8 @@ import 'package:provider/provider.dart';
 
 class SaveButton extends StatelessWidget {
 
-  const SaveButton({Key? key}) : super(key: key);
-
+  SaveButton({required this.controllers});
+  final List<TextEditingController> controllers;
   @override
   Widget build(BuildContext context) {
 
@@ -31,6 +31,13 @@ class SaveButton extends StatelessWidget {
           final firestore = FirebaseFirestore.instance;
           final collectionRef = firestore.collection('applications');
           await collectionRef.add(data);
+
+          for (var controller in controllers) { controller.clear(); }
+
+          titleProvider.value = null;
+          companyProvider.value = null;
+          countryProvider.value = null;
+          urlProvider.value = null;
         },
         child: const Text('Save'),
       ),

@@ -24,26 +24,24 @@ class _MyCountryPickerState extends State<MyCountryPicker> {
   @override
   Widget build(BuildContext context) {
     final countryProvider = Provider.of<CountryProvider>(context);
-    return Expanded(
-      child: GestureDetector(
-        onTap: () {
-          showCountryPicker(
-            favorite: favorite,
-            context: context,
-            onClosed: () {
-              countryProvider.value = countryCode;
-            },
-            onSelect: (value) {
-              setState(() {
-                countryCode = value.countryCode;
-              });
-            },
-          );
-        },
-        child: Container(
-          color: kInputColor,
-          child: Text(countryCode ?? 'Country'),
-        ),
+    return GestureDetector(
+      onTap: () {
+        showCountryPicker(
+          favorite: favorite,
+          context: context,
+          onClosed: () {
+            countryProvider.value = countryCode;
+          },
+          onSelect: (value) {
+            setState(() {
+              countryCode = value.countryCode;
+            });
+          },
+        );
+      },
+      child: Container(
+        color: kInputColor,
+        child: Center(child: Text(countryCode ?? 'Country')),
       ),
     );
   }
