@@ -8,52 +8,31 @@ import 'package:provider/provider.dart';
 
 class SaveButton extends StatelessWidget {
 
-  SaveButton({Key? key}) : super(key: key);
+  const SaveButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-    return Column(
-      children: [
-        ElevatedButton(
-          onPressed: () async {
-            final titleProvider = Provider.of<TitleProvider>(context, listen: false);
-            final companyProvider = Provider.of<CompanyProvider>(context, listen: false);
-            final countryProvider = Provider.of<CountryProvider>(context, listen: false);
-            final urlProvider = Provider.of<UrlProvider>(context, listen: false);
-            final data = {
-              'title': titleProvider.value,
-              'company': companyProvider.value,
-              'country': countryProvider.value,
-              'url': urlProvider.value,
-              'date': DateTime.now(),
-            };
-            final firestore = FirebaseFirestore.instance;
-            final collectionRef = firestore.collection('applications');
-            await collectionRef.add(data);
-          },
-          child: Text('Save'),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            final titleProvider = Provider.of<TitleProvider>(context, listen: false);
-            final companyProvider = Provider.of<CompanyProvider>(context, listen: false);
-            final countryProvider = Provider.of<CountryProvider>(context, listen: false);
-            final urlProvider = Provider.of<UrlProvider>(context, listen: false);
-            final data = {
-              'title': titleProvider.value,
-              'company': companyProvider.value,
-              'country': countryProvider.value,
-              'url': urlProvider.value,
-              'date': DateTime.now(),
-            };
-            showDialog(context: context, builder: (context) {
-              return Text(data.toString());
-            });
-          },
-          child: Text('Check'),
-        )
-      ],
+    return Expanded(
+      child: ElevatedButton(
+        onPressed: () async {
+          final titleProvider = Provider.of<TitleProvider>(context, listen: false);
+          final companyProvider = Provider.of<CompanyProvider>(context, listen: false);
+          final countryProvider = Provider.of<CountryProvider>(context, listen: false);
+          final urlProvider = Provider.of<UrlProvider>(context, listen: false);
+          final data = {
+            'title': titleProvider.value,
+            'company': companyProvider.value,
+            'country': countryProvider.value,
+            'url': urlProvider.value,
+            'date': DateTime.now(),
+          };
+          final firestore = FirebaseFirestore.instance;
+          final collectionRef = firestore.collection('applications');
+          await collectionRef.add(data);
+        },
+        child: const Text('Save'),
+      ),
     );
   }
 }

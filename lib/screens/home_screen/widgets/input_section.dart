@@ -26,14 +26,10 @@ class _InputSectionState extends State<InputSection> {
     return Row(
       children: [
         InputFieldWidget(label: 'Company', provider: companyProvider),
-        InputFieldWidget(label: 'URL', provider: urlProvider),
-        InputFieldWidget(label: 'Country', provider: countryProvider),
         InputFieldWidget(label: 'Title', provider: titleProvider),
-        SaveButton(// company: companyController.text,
-            // url: urlController.text,
-            // country: countryController.text,
-            // title: titleController.text,
-            ),
+        InputFieldWidget(label: 'Country', provider: countryProvider),
+        InputFieldWidget(label: 'URL', provider: urlProvider),
+        const SaveButton(),
       ],
     );
   }

@@ -7,11 +7,16 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        InputSection(),
-        JobsStreamBuilder(),
-      ],
+    final width = MediaQuery.of(context).size.width;
+    final spacer = width / 20.0;
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: spacer),
+      child: Column(
+        children: [
+          InputSection(),
+          JobsStreamBuilder(),
+        ],
+      ),
     );
   }
 }
