@@ -1,6 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_jobs_applications/services/company_provider.dart';
+import 'package:flutter_jobs_applications/services/country_provider.dart';
+import 'package:flutter_jobs_applications/services/super_provider.dart';
+import 'package:flutter_jobs_applications/services/title_provider.dart';
+import 'package:flutter_jobs_applications/services/url_provider.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.android,
+  );
+
   runApp(const MyApp());
 }
 
@@ -9,9 +25,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: MainScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CompanyProvider()),
+        ChangeNotifierProvider(create: (_) => CountryProvider()),
+        ChangeNotifierProvider(create: (_) => UrlProvider()),
+        ChangeNotifierProvider(create: (_) => TitleProvider()),
+      ],
+      child: MaterialApp(
+        home: Scaffold(
+          body: MainScreen(),
+        ),
       ),
     );
   }
@@ -39,24 +63,25 @@ class InputSection extends StatefulWidget {
 }
 
 class _InputSectionState extends State<InputSection> {
-  TextEditingController companyController = TextEditingController();
-  TextEditingController urlController = TextEditingController();
-  TextEditingController countryController = TextEditingController();
-  TextEditingController titleController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final companyProvider = Provider.of<CompanyProvider>(context);
+    final urlProvider = Provider.of<UrlProvider>(context);
+    final countryProvider = Provider.of<CountryProvider>(context);
+    final titleProvider = Provider.of<TitleProvider>(context);
+
     return Row(
       children: [
-        InputFieldWidget(label: 'Company', controller: companyController),
-        InputFieldWidget(label: 'URL', controller: urlController),
-        InputFieldWidget(label: 'Country', controller: countryController),
-        InputFieldWidget(label: 'Title', controller: titleController),
+        InputFieldWidget(label: 'Company', provider: companyProvider),
+        InputFieldWidget(label: 'URL', provider: urlProvider),
+        InputFieldWidget(label: 'Country', provider: countryProvider),
+        InputFieldWidget(label: 'Title', provider: titleProvider),
         SaveButton(
-            company: companyController.text,
-            url: urlController.text,
-            country: countryController.text,
-            title: titleController.text,
+            // company: companyController.text,
+            // url: urlController.text,
+            // country: countryController.text,
+            // title: titleController.text,
         ),
       ],
     );
@@ -64,41 +89,68 @@ class _InputSectionState extends State<InputSection> {
 }
 
 class SaveButton extends StatelessWidget {
-  final String company;
-  final String url;
-  final String country;
-  final String title;
 
-  const SaveButton({
-    Key? key,
-    required this.title,
-    required this.company,
-    required this.country,
-    required this.url,
-  }) : super(key: key);
+  SaveButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
 
-      },
-      child: Text('Save'),
+    return Column(
+      children: [
+        ElevatedButton(
+          onPressed: () async {
+            final titleProvider = Provider.of<TitleProvider>(context, listen: false);
+            final companyProvider = Provider.of<CompanyProvider>(context, listen: false);
+            final countryProvider = Provider.of<CountryProvider>(context, listen: false);
+            final urlProvider = Provider.of<UrlProvider>(context, listen: false);
+            final data = {
+              'title': titleProvider.value,
+              'company': companyProvider.value,
+              'country': countryProvider.value,
+              'url': urlProvider.value,
+              'date': DateTime.now(),
+            };
+            final firestore = FirebaseFirestore.instance;
+            final collectionRef = firestore.collection('applications');
+            await collectionRef.add(data);
+          },
+          child: Text('Save'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            final titleProvider = Provider.of<TitleProvider>(context, listen: false);
+            final companyProvider = Provider.of<CompanyProvider>(context, listen: false);
+            final countryProvider = Provider.of<CountryProvider>(context, listen: false);
+            final urlProvider = Provider.of<UrlProvider>(context, listen: false);
+            final data = {
+              'title': titleProvider.value,
+              'company': companyProvider.value,
+              'country': countryProvider.value,
+              'url': urlProvider.value,
+              'date': DateTime.now(),
+            };
+            showDialog(context: context, builder: (context) {
+              return Text(data.toString());
+            });
+          },
+          child: Text('Check'),
+        )
+      ],
     );
   }
 }
 
 
 class InputFieldWidget extends StatelessWidget {
-  InputFieldWidget({required this.label, required this.controller});
+  InputFieldWidget({required this.label, required this.provider});
+  final SuperProvider provider;
   final String label;
-  final TextEditingController controller;
+
+  final noUnderline = InputDecoration(border: InputBorder.none);
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final noUnderline = InputDecoration(border: InputBorder.none);
-    final textField = TextField(controller: controller, decoration: noUnderline,);
-
     return Expanded(
       child: Container(
         margin: EdgeInsets.all(2.0),
@@ -111,7 +163,24 @@ class InputFieldWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(child: Center(child: Text(label))),
-            Expanded(child: textField)
+            Expanded(
+              child: TextField(
+                controller: controller,
+                decoration: noUnderline,
+                onChanged: (value) {
+                  provider.value = value;
+
+                },
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                showDialog(context: context, builder: (context) {
+                  return Text(provider.value ?? 'NULL');
+                });
+              },
+              child: Text('Check'),
+            ),
           ],
         ),
       ),
