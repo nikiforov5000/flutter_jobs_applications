@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_jobs_applications/services/company_provider.dart';
 import 'package:flutter_jobs_applications/services/country_provider.dart';
