@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jobs_applications/screens/home_screen/constants/colors.dart';
 import 'package:flutter_jobs_applications/services/super_provider.dart';
 
 class InputFieldWidget extends StatelessWidget {
@@ -16,7 +17,7 @@ class InputFieldWidget extends StatelessWidget {
         padding: EdgeInsets.only(left: 5.0),
         margin: EdgeInsets.all(2.0),
         decoration: BoxDecoration(
-          color: Color(0xffffddaa),
+          color: kInputColor,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
@@ -25,12 +26,10 @@ class InputFieldWidget extends StatelessWidget {
             // Expanded(child: Center(child: Text(label))),
             Expanded(
               child: TextField(
-                
                 controller: controller,
                 decoration: decoration,
                 onChanged: (value) {
                   provider.value = value;
-
                 },
               ),
             ),
