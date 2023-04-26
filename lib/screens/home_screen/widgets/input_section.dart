@@ -21,18 +21,27 @@ class _InputSectionState extends State<InputSection> {
   Widget build(BuildContext context) {
     final companyProvider = Provider.of<CompanyProvider>(context);
     final urlProvider = Provider.of<UrlProvider>(context);
-    final countryProvider = Provider.of<CountryProvider>(context);
     final titleProvider = Provider.of<TitleProvider>(context);
+    final height = MediaQuery.of(context).size.height;
+    final rowHeight = height / 10;
 
-    return Row(
-      children: [
-        InputFieldWidget(label: 'Company', provider: companyProvider),
-        InputFieldWidget(label: 'Title', provider: titleProvider),
-        // InputFieldWidget(label: 'Country', provider: countryProvider),
-        MyCountryPicker (provider: countryProvider),
-        InputFieldWidget(label: 'URL', provider: urlProvider),
-        const SaveButton(),
-      ],
+    // final companyInput = TextField(
+    //   onChanged: ,
+    // );
+
+
+    return SizedBox(
+      height: rowHeight,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          InputFieldWidget(label: 'Company', provider: companyProvider),
+          InputFieldWidget(label: 'Title', provider: titleProvider),
+          MyCountryPicker (),
+          InputFieldWidget(label: 'URL', provider: urlProvider),
+          const SaveButton(),
+        ],
+      ),
     );
   }
 }

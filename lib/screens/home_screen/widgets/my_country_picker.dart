@@ -1,11 +1,10 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_jobs_applications/screens/home_screen/constants/colors.dart';
 import 'package:flutter_jobs_applications/services/country_provider.dart';
 import 'package:provider/provider.dart';
 
 class MyCountryPicker extends StatefulWidget {
-  MyCountryPicker({required this.provider});
-  final provider;
 
   @override
   State<MyCountryPicker> createState() => _MyCountryPickerState();
@@ -41,7 +40,10 @@ class _MyCountryPickerState extends State<MyCountryPicker> {
             },
           );
         },
-        child: Text(countryCode ?? 'Country'),
+        child: Container(
+          color: kInputColor,
+          child: Text(countryCode ?? 'Country'),
+        ),
       ),
     );
   }
