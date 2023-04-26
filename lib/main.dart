@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => TitleProvider()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
           body: HomeScreen(),
         ),

@@ -11,18 +11,20 @@ class JobsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView.builder(
-        itemCount: snapshot.data?.docs.length,
-        itemBuilder: (BuildContext context, int index) {
-          final doc = snapshot.data?.docs[index];
-          if (doc == null || !doc.exists) {
-            return Placeholder(
-              child: Text('NULL document'),
-            );
-          }
-          final JobApplication jobApplication = JobApplication.fromFirebase(doc);
-          return JobsListItem(jobApplication);
-        },
+      child: Container(
+        child: ListView.builder(
+          itemCount: snapshot.data?.docs.length,
+          itemBuilder: (BuildContext context, int index) {
+            final doc = snapshot.data?.docs[index];
+            if (doc == null || !doc.exists) {
+              return Placeholder(
+                child: Text('NULL document'),
+              );
+            }
+            final JobApplication jobApplication = JobApplication.fromFirebase(doc);
+            return JobsListItem(index, jobApplication);
+          },
+        ),
       ),
     );
   }
