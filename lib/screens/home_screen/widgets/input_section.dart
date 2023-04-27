@@ -21,24 +21,24 @@ class InputSection extends StatelessWidget {
     final rowHeight = height / 10;
 
 
-    TextEditingController companyController = TextEditingController();
-    final companyInput = TextFieldWidget(label: 'company', provider: companyProvider, controller: companyController);
+    // TextEditingController companyController = TextEditingController();
+    final companyInput = TextFieldWidget(label: 'company');
 
-    TextEditingController titleController = TextEditingController();
-    final titleInput = TextFieldWidget(label: 'title', provider: titleProvider, controller: titleController,);
-
-    TextEditingController urlController = TextEditingController();
-    final urlInput = TextFieldWidget(label: 'url', provider: urlProvider, controller: urlController);
-
-    TextEditingController countryController = TextEditingController();
-    final MyCountryPicker countryPicker = MyCountryPicker(controller: countryController);
-
-    List<TextEditingController> controllers = [
-      companyController,
-      titleController,
-      urlController,
-      countryController,
-    ];
+    // TextEditingController titleController = TextEditingController();
+    // final titleInput = TextFieldWidget(label: 'title', provider: titleProvider, controller: titleController,);
+    //
+    // TextEditingController urlController = TextEditingController();
+    // final urlInput = TextFieldWidget(label: 'url', provider: urlProvider, controller: urlController);
+    //
+    // TextEditingController countryController = TextEditingController();
+    final MyCountryPicker countryPicker = MyCountryPicker();
+    //
+    // List<TextEditingController> controllers = [
+    //   companyController,
+    //   titleController,
+    //   urlController,
+    //   countryController,
+    // ];
 
     return SizedBox(
       height: rowHeight,
@@ -46,10 +46,15 @@ class InputSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           InputCellWidget(child: companyInput),
-          InputCellWidget(child: titleInput),
+          // InputCellWidget(child: titleInput),
           InputCellWidget(child: countryPicker),
-          InputCellWidget(child: urlInput),
-          SaveButton(controllers: controllers),
+          // InputCellWidget(child: urlInput),
+          SaveButton(
+              companyWidget: companyInput,
+              // titleInput: titleInput
+              countryPicker: countryPicker
+              // urlInput: urlInput
+          ),
         ],
       ),
     );
