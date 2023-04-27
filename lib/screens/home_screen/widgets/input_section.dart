@@ -31,7 +31,7 @@ class InputSection extends StatelessWidget {
     // final urlInput = TextFieldWidget(label: 'url', provider: urlProvider, controller: urlController);
     //
     // TextEditingController countryController = TextEditingController();
-    // final MyCountryPicker countryPicker = MyCountryPicker(controller: countryController);
+    final MyCountryPicker countryPicker = MyCountryPicker();
     //
     // List<TextEditingController> controllers = [
     //   companyController,
@@ -47,12 +47,12 @@ class InputSection extends StatelessWidget {
         children: [
           InputCellWidget(child: companyInput),
           // InputCellWidget(child: titleInput),
-          // InputCellWidget(child: countryPicker),
+          InputCellWidget(child: countryPicker),
           // InputCellWidget(child: urlInput),
           SaveButton(
-              companyWidget: companyInput
+              companyWidget: companyInput,
               // titleInput: titleInput
-              // countryPicker: countryPicker
+              countryPicker: countryPicker
               // urlInput: urlInput
           ),
         ],

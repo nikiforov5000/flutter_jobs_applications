@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_jobs_applications/screens/home_screen/widgets/my_country_picker.dart';
 import 'package:flutter_jobs_applications/screens/home_screen/widgets/text_field_widget.dart';
 import 'package:flutter_jobs_applications/services/company_provider.dart';
 import 'package:flutter_jobs_applications/services/country_provider.dart';
@@ -11,10 +12,12 @@ import 'package:provider/provider.dart';
 class SaveButton extends StatelessWidget {
 
   SaveButton({
+    required this.countryPicker,
     required this.companyWidget,
     // required this.controllers,
   });
   final TextFieldWidget companyWidget;
+  final MyCountryPicker countryPicker;
   // final List<TextEditingController> controllers;
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class SaveButton extends StatelessWidget {
           final data = {
             'company': companyWidget.text,
             // 'title': titleProvider.value,
-            // 'country': countryProvider.value,
+            'country': countryPicker.text,
             // 'url': urlProvider.value,
             'date': DateTime.now(),
           };
