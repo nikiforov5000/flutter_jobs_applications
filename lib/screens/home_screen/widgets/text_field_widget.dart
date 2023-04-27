@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_jobs_applications/services/super_provider.dart';
+
 class TextFieldWidget extends StatelessWidget {
   TextFieldWidget({
     super.key,
-    // required this.provider,
     required this.label,
-    // required this.controller,
   });
-  TextEditingController controller = TextEditingController();
 
-  // final SuperProvider provider;
-  final label;
-  // final TextEditingController controller;
+  TextEditingController controller = TextEditingController();
+  final String label;
 
   String get text => controller.text;
   void clear() => controller.clear();
@@ -25,9 +21,6 @@ class TextFieldWidget extends StatelessWidget {
         hintText: label,
         border: InputBorder.none,
       ),
-      onChanged: (value) {
-        // provider.value = value;
-      },
     );
   }
 }
