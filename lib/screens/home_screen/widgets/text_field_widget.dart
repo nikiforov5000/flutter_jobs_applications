@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_jobs_applications/services/super_provider.dart';
 class TextFieldWidget extends StatelessWidget {
-  const TextFieldWidget({
+  TextFieldWidget({
     super.key,
-    required this.provider,
+    // required this.provider,
     required this.label,
-    required this.controller,
+    // required this.controller,
   });
+  TextEditingController controller = TextEditingController();
 
-  final SuperProvider provider;
+  // final SuperProvider provider;
   final label;
-  final TextEditingController controller;
+  // final TextEditingController controller;
+
+  String get text => controller.text;
+  void clear() => controller.clear();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class TextFieldWidget extends StatelessWidget {
         border: InputBorder.none,
       ),
       onChanged: (value) {
-        provider.value = value;
+        // provider.value = value;
       },
     );
   }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_jobs_applications/screens/home_screen/widgets/text_field_widget.dart';
 import 'package:flutter_jobs_applications/services/company_provider.dart';
 import 'package:flutter_jobs_applications/services/country_provider.dart';
 import 'package:flutter_jobs_applications/services/title_provider.dart';
@@ -9,35 +10,41 @@ import 'package:provider/provider.dart';
 
 class SaveButton extends StatelessWidget {
 
-  SaveButton({required this.controllers});
-  final List<TextEditingController> controllers;
+  SaveButton({
+    required this.companyWidget,
+    // required this.controllers,
+  });
+  final TextFieldWidget companyWidget;
+  // final List<TextEditingController> controllers;
   @override
   Widget build(BuildContext context) {
 
     return Expanded(
       child: ElevatedButton(
         onPressed: () async {
-          final titleProvider = Provider.of<TitleProvider>(context, listen: false);
-          final companyProvider = Provider.of<CompanyProvider>(context, listen: false);
-          final countryProvider = Provider.of<CountryProvider>(context, listen: false);
-          final urlProvider = Provider.of<UrlProvider>(context, listen: false);
+          // final titleProvider = Provider.of<TitleProvider>(context, listen: false);
+          // final companyProvider = Provider.of<CompanyProvider>(context, listen: false);
+          // final countryProvider = Provider.of<CountryProvider>(context, listen: false);
+          // final urlProvider = Provider.of<UrlProvider>(context, listen: false);
           final data = {
-            'title': titleProvider.value,
-            'company': companyProvider.value,
-            'country': countryProvider.value,
-            'url': urlProvider.value,
+            'company': companyWidget.text,
+            // 'title': titleProvider.value,
+            // 'country': countryProvider.value,
+            // 'url': urlProvider.value,
             'date': DateTime.now(),
           };
           final firestore = FirebaseFirestore.instance;
           final collectionRef = firestore.collection('applications');
           await collectionRef.add(data);
 
-          for (var controller in controllers) { controller.clear(); }
+          companyWidget.clear();
 
-          titleProvider.value = null;
-          companyProvider.value = null;
-          countryProvider.value = null;
-          urlProvider.value = null;
+          // for (var controller in controllers) { controller.clear(); }
+
+          // titleProvider.value = null;
+          // companyProvider.value = null;
+          // countryProvider.value = null;
+          // urlProvider.value = null;
         },
         child: const Text('Save'),
       ),
