@@ -30,12 +30,14 @@ class InputSection extends StatelessWidget {
     TextEditingController urlController = TextEditingController();
     final urlInput = TextFieldWidget(label: 'url', provider: urlProvider, controller: urlController);
 
-    final MyCountryPicker countryPicker = MyCountryPicker();
+    TextEditingController countryController = TextEditingController();
+    final MyCountryPicker countryPicker = MyCountryPicker(controller: countryController);
 
     List<TextEditingController> controllers = [
       companyController,
       titleController,
       urlController,
+      countryController,
     ];
 
     return SizedBox(
