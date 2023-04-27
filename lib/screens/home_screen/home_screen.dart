@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: spacer),
       child: Column(
-        children: [
+        children: const [
           InputSection(),
           JobsStreamBuilder(),
         ],

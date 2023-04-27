@@ -10,8 +10,8 @@ class JobsStreamBuilder extends StatelessWidget {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('applications').snapshots(),
       builder: (context, snapshot) {
-        if (snapshot == null || !snapshot.hasData) {
-          return Text('Snapshot is empty');
+        if (snapshot.hasError || !snapshot.hasData) {
+          return const Text('Snapshot is empty');
         }
         return JobsListView(snapshot: snapshot);
       },

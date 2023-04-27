@@ -13,7 +13,7 @@ class ItemCellText extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(width: spacer,),
-          Text(data!),
+          Flexible(child: Text(data!, overflow: TextOverflow.ellipsis,)),
           SizedBox(width: spacer,),
         ],
       ),

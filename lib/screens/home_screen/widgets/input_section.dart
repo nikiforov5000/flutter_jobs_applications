@@ -3,42 +3,19 @@ import 'package:flutter_jobs_applications/screens/home_screen/widgets/input_cell
 import 'package:flutter_jobs_applications/screens/home_screen/widgets/my_country_picker.dart';
 import 'package:flutter_jobs_applications/screens/home_screen/widgets/save_button.dart';
 import 'package:flutter_jobs_applications/screens/home_screen/widgets/text_field_widget.dart';
-import 'package:flutter_jobs_applications/services/company_provider.dart';
-import 'package:flutter_jobs_applications/services/title_provider.dart';
-import 'package:flutter_jobs_applications/services/url_provider.dart';
-import 'package:provider/provider.dart';
 
 class InputSection extends StatelessWidget {
   const InputSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final companyProvider = Provider.of<CompanyProvider>(context);
-    final urlProvider = Provider.of<UrlProvider>(context);
-    final titleProvider = Provider.of<TitleProvider>(context);
-
     final height = MediaQuery.of(context).size.height;
     final rowHeight = height / 10;
 
-
-    // TextEditingController companyController = TextEditingController();
     final companyInput = TextFieldWidget(label: 'company');
-
-    // TextEditingController titleController = TextEditingController();
-    // final titleInput = TextFieldWidget(label: 'title', provider: titleProvider, controller: titleController,);
-    //
-    // TextEditingController urlController = TextEditingController();
-    // final urlInput = TextFieldWidget(label: 'url', provider: urlProvider, controller: urlController);
-    //
-    // TextEditingController countryController = TextEditingController();
+    final titleInput = TextFieldWidget(label: 'title');
     final MyCountryPicker countryPicker = MyCountryPicker();
-    //
-    // List<TextEditingController> controllers = [
-    //   companyController,
-    //   titleController,
-    //   urlController,
-    //   countryController,
-    // ];
+    final urlInput = TextFieldWidget(label: 'url');
 
     return SizedBox(
       height: rowHeight,
@@ -46,14 +23,14 @@ class InputSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           InputCellWidget(child: companyInput),
-          // InputCellWidget(child: titleInput),
+          InputCellWidget(child: titleInput),
           InputCellWidget(child: countryPicker),
-          // InputCellWidget(child: urlInput),
+          InputCellWidget(child: urlInput),
           SaveButton(
-              companyWidget: companyInput,
-              // titleInput: titleInput
-              countryPicker: countryPicker
-              // urlInput: urlInput
+            companyWidget: companyInput,
+            countryPicker: countryPicker,
+            titleWidget: titleInput,
+            urlWidget: urlInput,
           ),
         ],
       ),
