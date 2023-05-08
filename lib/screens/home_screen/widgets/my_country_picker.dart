@@ -24,6 +24,7 @@ class _MyCountryPickerState extends State<MyCountryPicker> {
           context: context,
           onSelect: (country) {
             setState(() {
+              favorite.insert(0, country.countryCode);
               widget.countryCode = country.countryCode;
             });
           },
