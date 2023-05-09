@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_jobs_applications/data/job_data.dart';
 import 'package:flutter_jobs_applications/screens/home_screen/widgets/my_country_picker.dart';
 import 'package:flutter_jobs_applications/screens/home_screen/widgets/text_field_widget.dart';
 
@@ -28,10 +28,10 @@ class SaveButton extends StatelessWidget {
             'country': countryPicker.text,
             'url': urlWidget.text,
             'date': DateTime.now(),
+            'status': 0,
           };
-          final firestore = FirebaseFirestore.instance;
-          final collectionRef = firestore.collection('applications');
-          await collectionRef.add(data);
+
+          JobData.saveJob(data);
 
           companyWidget.clear();
           titleWidget.clear();

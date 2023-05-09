@@ -19,7 +19,7 @@ class JobsListView extends StatelessWidget {
             return const Placeholder(child: Text('NULL document'));
           }
           final JobApplication jobApplication =
-              JobApplication.fromFirebase(doc);
+              JobApplication.fromFirestore(doc);
           return JobsListItem(index, jobApplication);
         },
       ),
