@@ -11,7 +11,7 @@ class JobData {
   static updateStatus(JobApplication jobApplication) {
     int newStatus = jobApplication.status ?? 0;
     newStatus++;
-    newStatus %= 3;
+    newStatus %= 4;
     jobApplication.status = newStatus;
     updateJob(jobApplication);
   }

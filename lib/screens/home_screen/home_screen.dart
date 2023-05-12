@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jobs_applications/screens/home_screen/widgets/cover_letter_editor_button.dart';
 import 'package:flutter_jobs_applications/screens/home_screen/widgets/input_section.dart';
 import 'package:flutter_jobs_applications/screens/home_screen/widgets/jobs_stream_builder.dart';
 
@@ -12,7 +13,8 @@ class HomeScreen extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: spacer),
       child: Column(
-        children: const [
+        children: [
+          CoverLetterEditorButton(),
           InputSection(),
           JobsStreamBuilder(),
         ],

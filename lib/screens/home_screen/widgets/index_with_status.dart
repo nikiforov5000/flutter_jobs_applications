@@ -44,6 +44,10 @@ Color getStatusColor(JobApplication jobApplication) {
         {
           return Colors.green;
         }
+      case 3:
+        {
+          return Colors.teal;
+        }
     }
   }
   return Colors.grey;
