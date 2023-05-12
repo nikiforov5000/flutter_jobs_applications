@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: spacer),
       child: Column(
         children: [
-          CoverLetterEditorButton(),
+          // CoverLetterEditorButton(),
           InputSection(),
           JobsStreamBuilder(),
         ],
